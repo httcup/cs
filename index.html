@@ -94,33 +94,6 @@
         const ns = new URLSearchParams(window.location.search).get("ns")
         const textareas = document.querySelectorAll('.quadrant textarea');
 
-        // 保存数据的函数，假设这是您原有的保存逻辑
-        function saveData(element) {
-            const key = "quadrant-" + element.getAttribute("key");
-            localStorage.setItem(key, element.value);
-        }
-
-        // 为每个象限的文本区域添加事件监听器
-        document.querySelectorAll('.quadrant textarea').forEach(textarea => {
-            textarea.addEventListener('input', function(event) {
-                // 检查输入是否为换行符
-                if (event.inputType === 'insertLineBreak') {
-                    // 创建一个新的带有勾选框的任务行
-                    const checkboxTask = createCheckboxTask();
-                    // 将新的任务行插入到文本区域中
-                    textarea.value += '\n' + checkboxTask;
-                    // 清除当前的输入，防止重复添加
-                    textarea.value = textarea.value.slice(0, -1);
-                    // 保存更新后的数据
-                    saveData(textarea);
-                }
-            });
-        });
-
-        // 创建带有勾选框的任务行
-        function createCheckboxTask() {
-            return '<div class="checkbox-task"><input type="checkbox">任务描述</div>';
-        }
         window.onload = function () {
 
             textareas.forEach((textarea, index) => {
