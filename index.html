@@ -117,11 +117,6 @@
         });
 
         // 页面加载完成后，从localStorage加载数据
-        const textareas = document.querySelectorAll('textarea');
-        const inputs = document.querySelectorAll('input');
-        const ns = new URLSearchParams(window.location.search).get("ns")
-        const textareas = document.querySelectorAll('.quadrant textarea');
-
         window.onload = function () {
 
             textareas.forEach((textarea, index) => {
