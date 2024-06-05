@@ -71,7 +71,56 @@
         }
     </style>
 </head>
+<style>
+        .task-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .task-input {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
 
+<div id="task-list" class="task-container">
+    <!-- 初始的输入框和勾选框将在这里动态插入 -->
+</div>
+
+<script>
+    // 初始化任务列表
+    function createTaskInput() {
+        const taskContainer = document.getElementById('task-list');
+        const newTaskDiv = document.createElement('div');
+        newTaskDiv.classList.add('task-input');
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        newTaskDiv.appendChild(checkbox);
+
+        const taskInput = document.createElement('input');
+        taskInput.type = 'text';
+        newTaskDiv.appendChild(taskInput);
+
+        taskContainer.appendChild(newTaskDiv);
+    }
+
+    // 当页面加载完成时，创建初始的输入框和勾选框
+    window.onload = function() {
+        createTaskInput();
+    };
+
+    // 监听回车键，添加新的任务输入
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 阻止表单提交
+            createTaskInput();
+        }
+    });
+</script>
+
+</body>
 <body>
 
     <div id="quadrant1" class="quadrant">
