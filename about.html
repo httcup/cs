@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>四象限</title>
+    <title>四象限任务管理器</title>
     <style>
         body {
             margin: 0;
@@ -24,21 +24,20 @@
 
         .quadrant input[type='text'] {
             border: none;
-            padding: 0px;
+            padding: 5px;
             text-align: center;
             font-weight: bold;
             font-size: 24px; /* 调整字体大小 */
             background-color: transparent;
         }
 
-        .quadrant .task {
+        .quadrant .task-input {
             display: flex;
             align-items: center;
-            margin-top: 10px;
         }
 
-        .quadrant .task input[type='checkbox'] {
-            margin-right: 10px;
+        .quadrant .task-input input[type='checkbox'] {
+            margin-right: 5px;
         }
 
         .quadrant textarea {
@@ -75,36 +74,20 @@
 <body>
 
     <div id="quadrant1" class="quadrant">
-        <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
-        <div class="task">
-            <input type="checkbox" id="task1" />
-            <label for="task1">任务1</label>
+        <div class="task-input">
+            <input type="checkbox" id="checkbox1" />
+            <label for="checkbox1"></label>
+            <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
         </div>
-        <textarea oninput="saveData(this)" key="textarea1" placeholder="标题和窗口都可编辑,保存为html文件运行支持实时本地保存状态"></textarea>
+        <textarea oninput="saveData(this)" key="textarea1" placeholder="输入任务..."></textarea>
     </div>
 
-    <!-- 其他象限的代码类似，添加复选框和任务标签 -->
+    <!-- 其他象限的代码类似 -->
 
     <script>
-        const textareas = document.querySelectorAll('textarea');
-        const inputs = document.querySelectorAll('input[type="text"]');
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-        window.onload = function () {
-            // 加载本地存储的数据
-            textareas.forEach((textarea, index) => {
-                const key = "4quadrant-" + textarea.getAttribute("key");
-                const savedValue = localStorage.getItem(key);
-                if (savedValue) {
-                    textarea.value = savedValue;
-                }
-            });
-            // 其他代码...
-        };
-
         function saveData(element) {
             // 保存数据到本地存储的逻辑
-            const key = "4quadrant-" + element.getAttribute("key");
+            const key = "quadrant-" + element.getAttribute("key");
             localStorage.setItem(key, element.value);
         }
     </script>
