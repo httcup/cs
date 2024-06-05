@@ -1,59 +1,113 @@
- <!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>关于本站</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="full-screen" content="yes">
-    <!--UC强制全屏-->
-    <meta name="browsermode" content="application">
-    <!--UC应用模式-->
-    <meta name="x5-fullscreen" content="true">
-    <!--QQ强制全屏-->
-    <meta name="x5-page-mode" content="app">
-    <!--QQ应用模式-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" id="font-awesome-css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css?ver=1.1422" type="text/css" media="all">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <script src="https://at.alicdn.com/t/font_1230786_ewprpwrczvj.js"></script>
-    <script src="sou.js"></script>
-    <link rel='stylesheet' href='style.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四象限</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 50% 50%;
+            font-family: Arial, sans-serif;
+        }
+
+        .quadrant {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 10px;
+        }
+
+        .quadrant input[type='text'] {
+            border: none;
+            padding: 0px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px; /* 调整字体大小 */
+            background-color: transparent;
+        }
+
+        .quadrant .task {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quadrant .task input[type='checkbox'] {
+            margin-right: 10px;
+        }
+
+        .quadrant textarea {
+            flex-grow: 1;
+            margin-top: 10px;
+            padding: 15px;
+            border: none;
+            resize: none;
+            border-radius: 10px;
+        }
+
+        #quadrant1 {
+            background-color: #f8b3d0;
+        }
+
+        #quadrant2 {
+            background-color: #b3e5fc;
+        }
+
+        #quadrant3 {
+            background-color: #ffccbc;
+        }
+
+        #quadrant4 {
+            background-color: #d7c3fa;
+        }
+
+        .quadrant textarea {
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
-        <div class="bottom-cover" style="background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(244 248 251 / 0.6) 50%, rgb(244 248 251) 100%);"></div>
+
+    <div id="quadrant1" class="quadrant">
+        <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
+        <div class="task">
+            <input type="checkbox" id="task1" />
+            <label for="task1">任务1</label>
+        </div>
+        <textarea oninput="saveData(this)" key="textarea1" placeholder="标题和窗口都可编辑,保存为html文件运行支持实时本地保存状态"></textarea>
     </div>
- 
- 
- 
-                        <!-- 关于网站 -->
-                        </br>
-                        </br>
-                         <h4 align="center">本站是收集的一些优秀网站，会不断整理。</h4>
-                         </br>
 
-                          <h4 align="center">如果觉得不错可以捐赠请和一杯咖啡。</h4>
-                          </br>
+    <!-- 其他象限的代码类似，添加复选框和任务标签 -->
 
-                           <h4 align="center">捐赠域名续费： 588.im </h4>
-                           </br>
-                            
-                            <h4 align="center"><a href="https://httcup.gitee.io/">返回主页</a></h4><h4 align="center"><a href="https://httcup.gitee.io/hh">返回简洁页</a></h4>                                                 
-                             </br>
-                              <h4 align="center">扫码捐赠：<img src="img/shoukuanyasuo.jpg" width="200" height="250"></h4>
-                               
+    <script>
+        const textareas = document.querySelectorAll('textarea');
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-                           
+        window.onload = function () {
+            // 加载本地存储的数据
+            textareas.forEach((textarea, index) => {
+                const key = "4quadrant-" + textarea.getAttribute("key");
+                const savedValue = localStorage.getItem(key);
+                if (savedValue) {
+                    textarea.value = savedValue;
+                }
+            });
+            // 其他代码...
+        };
+
+        function saveData(element) {
+            // 保存数据到本地存储的逻辑
+            const key = "4quadrant-" + element.getAttribute("key");
+            localStorage.setItem(key, element.value);
+        }
+    </script>
+</body>
 
 </html>
-
-
-
-
-
-
-
