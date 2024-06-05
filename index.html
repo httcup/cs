@@ -68,9 +68,7 @@
 
     <div id="quadrant1" class="quadrant">
         <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
-        <textarea oninput="saveData(this)" key="textarea1" placeholder="
-            使用说明：标题和窗口都可编辑,请保存为html文件运行支持实时本地保存状态，
-            如未保存本地，关闭本页面后数据回丢失。"></textarea>
+        <textarea oninput="saveData(this)" key="textarea1" placeholder="使用说明：标题和窗口都可编辑,请保存为html文件运行支持实时本地保存状态，如未保存本地，关闭本页面后数据回丢失。"></textarea>
     </div>
 
     <div id="quadrant2" class="quadrant">
@@ -89,6 +87,36 @@
     </div>
 
     <script>
+                // 保存数据到localStorage的函数
+        function saveData(element) {
+            const key = "quadrant-" + element.getAttribute("key");
+            localStorage.setItem(key, element.value);
+        }
+
+        // 为每个象限的文本区域添加事件监听器
+        document.querySelectorAll('.quadrant textarea').forEach(textarea => {
+            textarea.addEventListener('keydown', function(event) {
+                // 监听回车键
+                if (event.key === 'Enter') {
+                    // 阻止默认的换行行为
+                    event.preventDefault();
+                    
+                    // 获取光标位置
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    let value = textarea.value;
+                    
+                    // 在当前光标位置插入特定符号
+                    value = value.slice(0, start) + '·' + value.slice(end);
+                    textarea.value = value;
+                    
+                    // 移动光标到插入符号之后
+                    textarea.selectionStart = textarea.selectionEnd = start + 1;
+                }
+            });
+        });
+
+        // 页面加载完成后，从localStorage加载数据
         const textareas = document.querySelectorAll('textarea');
         const inputs = document.querySelectorAll('input');
         const ns = new URLSearchParams(window.location.search).get("ns")
