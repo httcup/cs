@@ -72,6 +72,13 @@
         }
         .task-input {
             margin-bottom: 5px;
+            width: 100%; /* 调整任务输入框长度，使其充满父容器 */
+        }
+        /* 新增：为文本输入框设置宽度 */
+        .task-input input[type='text'] {
+            width: 100%; /* 输入框宽度充满其父容器 */
+            padding: 8px; /* 一些内边距以提高可读性 */
+            box-sizing: border-box; /* 边框计算在宽度内 */
         }
     </style>
 </head>
@@ -119,12 +126,126 @@
 
     <div id="quadrant1" class="quadrant">
         <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
+        <style>
+        .task-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .task-input {
+            margin-bottom: 5px;
+            width: 100%; /* 调整任务输入框长度，使其充满父容器 */
+        }
+        /* 新增：为文本输入框设置宽度 */
+        .task-input input[type='text'] {
+            width: 100%; /* 输入框宽度充满其父容器 */
+            padding: 8px; /* 一些内边距以提高可读性 */
+            box-sizing: border-box; /* 边框计算在宽度内 */
+        }
+    </style>
+</head>
+<body>
+
+<div id="task-list" class="task-container">
+    <!-- 初始的输入框和勾选框将在这里动态插入 -->
+</div>
+
+<script>
+    // 初始化任务列表
+    function createTaskInput() {
+        const taskContainer = document.getElementById('task-list');
+        const newTaskDiv = document.createElement('div');
+        newTaskDiv.classList.add('task-input');
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        newTaskDiv.appendChild(checkbox);
+
+        const taskInput = document.createElement('input');
+        taskInput.type = 'text';
+        newTaskDiv.appendChild(taskInput);
+
+        taskContainer.appendChild(newTaskDiv);
+    }
+
+    // 当页面加载完成时，创建初始的输入框和勾选框
+    window.onload = function() {
+        createTaskInput();
+    };
+
+    // 监听回车键，添加新的任务输入
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 阻止表单提交
+            createTaskInput();
+        }
+    });
+</script>
+
+</body>
         <textarea oninput="saveData(this)" key="textarea1" placeholder="标题和窗口都可编辑,保存为html文件运行支持实时本地保存状态
             本页面不保留任何数据，如您未保存本地，本页面关闭数据就会丢失"></textarea>
     </div>
 
     <div id="quadrant2" class="quadrant">
         <input type="text" value="重要不紧急" key="input2" oninput="saveData(this)" />
+        <style>
+        .task-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .task-input {
+            margin-bottom: 5px;
+            width: 100%; /* 调整任务输入框长度，使其充满父容器 */
+        }
+        /* 新增：为文本输入框设置宽度 */
+        .task-input input[type='text'] {
+            width: 100%; /* 输入框宽度充满其父容器 */
+            padding: 8px; /* 一些内边距以提高可读性 */
+            box-sizing: border-box; /* 边框计算在宽度内 */
+        }
+    </style>
+</head>
+<body>
+
+<div id="task-list" class="task-container">
+    <!-- 初始的输入框和勾选框将在这里动态插入 -->
+</div>
+
+<script>
+    // 初始化任务列表
+    function createTaskInput() {
+        const taskContainer = document.getElementById('task-list');
+        const newTaskDiv = document.createElement('div');
+        newTaskDiv.classList.add('task-input');
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        newTaskDiv.appendChild(checkbox);
+
+        const taskInput = document.createElement('input');
+        taskInput.type = 'text';
+        newTaskDiv.appendChild(taskInput);
+
+        taskContainer.appendChild(newTaskDiv);
+    }
+
+    // 当页面加载完成时，创建初始的输入框和勾选框
+    window.onload = function() {
+        createTaskInput();
+    };
+
+    // 监听回车键，添加新的任务输入
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 阻止表单提交
+            createTaskInput();
+        }
+    });
+</script>
+
+</body>
         <textarea oninput="saveData(this)" key="textarea2"></textarea>
     </div>
 
