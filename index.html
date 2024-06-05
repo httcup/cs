@@ -92,6 +92,22 @@
         const textareas = document.querySelectorAll('textarea');
         const inputs = document.querySelectorAll('input');
         const ns = new URLSearchParams(window.location.search).get("ns")
+        const textareas = document.querySelectorAll('.quadrant textarea');
+
+        textareas.forEach(textarea => {
+            textarea.addEventListener('keydown', function(event) {
+                // 监听回车键
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // 阻止默认的换行行为
+                    // 创建一个新的任务项
+                    const taskItem = '<div class="checkbox-task">·</div>';
+                    // 将新任务项添加到文本区域的末尾
+                    textarea.value += taskItem;
+                    // 将光标移至新任务项下方
+                    textarea.scrollTop = textarea.scrollHeight;
+                }
+            });
+        });
 
         window.onload = function () {
 
