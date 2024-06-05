@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +69,7 @@
 
     <div id="quadrant1" class="quadrant">
         <input type="text" value="重要紧急" key="input1" oninput="saveData(this)" />
-        <textarea oninput="saveData(this)" key="textarea1" placeholder="使用说明：标题和窗口都可编辑,关闭本页面后数据回丢失,本页面不会存储任何数据"></textarea>
+        <textarea oninput="saveData(this)" key="textarea1" placeholder="标题和窗口都可编辑,保存为html文件运行支持实时本地保存状态"></textarea>
     </div>
 
     <div id="quadrant2" class="quadrant">
@@ -90,7 +91,7 @@
         const textareas = document.querySelectorAll('textarea');
         const inputs = document.querySelectorAll('input');
         const ns = new URLSearchParams(window.location.search).get("ns")
-        const textareas = document.querySelectorAll('.quadrant textarea');
+
         window.onload = function () {
 
             textareas.forEach((textarea, index) => {
@@ -102,4 +103,21 @@
                 }
             });
             inputs.forEach((input, index) => {
-           
+                let key = "4quadrant-" + ns + "-" + input.getAttribute("key")
+
+                const savedValue = localStorage.getItem(key);
+                if (savedValue) {
+                    input.value = savedValue;
+                }
+            });
+        };
+        function saveData(element) {
+            let key = "4quadrant-" + ns + "-" + element.getAttribute("key")
+            localStorage.setItem(key, element.value);
+        }
+
+    </script>
+
+</body>
+
+</html>
